@@ -24,6 +24,7 @@ from safety_guardian.ooda_loop import OODALoop as SafetyGuardian
 from memory_trace_manager.memory_graph import MemoryTraceManager
 from abstract_pattern_detector.pattern_finder import AbstractPatternDetector
 from entropy_matrix_harmonizer.coherence_engine import EntropyMatrixHarmonizer
+from monetization.commercial_licensing import CommercialMonetizationService
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "legend_manifest.json"
@@ -241,6 +242,9 @@ class AxiomHiveCognitive:
 # Initialize the AxiomHive Cognitive Engine
 axiom_hive = AxiomHiveCognitive()
 
+# Initialize Commercial Licensing Service
+commercial_service = CommercialMonetizationService()
+
 
 @app.get("/api/manifest")
 def api_manifest():
@@ -331,6 +335,78 @@ def api_status():
         "deterministic_mode": True,
         "modular_processing": True
     })
+
+
+# Commercial Licensing API Endpoints
+
+@app.get("/api/commercial/pricing")
+def get_pricing():
+    """Get commercial pricing information"""
+    return JSONResponse(content={
+        "license_types": commercial_service.pricing,
+        "payment_address": commercial_service.license_manager.payment_verifier.expected_address,
+        "currency": "BTC"
+    })
+
+
+@app.post("/api/commercial/purchase/initiate")
+def initiate_purchase(customer_email: str, license_type: str = "personal"):
+    """Initiate a commercial license purchase"""
+    try:
+        result = commercial_service.initiate_purchase(customer_email, license_type)
+        return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
+
+
+@app.post("/api/commercial/purchase/complete")
+def complete_purchase(order_id: str, tx_hash: str, amount_btc: float, sender_address: str):
+    """Complete purchase with Bitcoin payment verification"""
+    try:
+        result = commercial_service.complete_purchase(order_id, tx_hash, amount_btc, sender_address)
+        return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
+
+
+@app.get("/api/commercial/order/{order_id}")
+def get_order_status(order_id: str):
+    """Get order status"""
+    try:
+        result = commercial_service.license_manager.get_order_status(order_id)
+        return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=404)
+
+
+@app.post("/api/commercial/license/activate")
+def activate_license(license_id: str, hardware_id: str, installation_path: str = ""):
+    """Activate license on hardware"""
+    try:
+        result = commercial_service.activate_license(license_id, hardware_id, installation_path)
+        return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
+
+
+@app.post("/api/commercial/license/validate")
+def validate_license(license_id: str, hardware_id: str):
+    """Validate license activation"""
+    try:
+        result = commercial_service.validate_license(license_id, hardware_id)
+        return JSONResponse(content=result)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
+
+
+@app.get("/api/commercial/download/{license_type}")
+def get_download_links(license_type: str):
+    """Get download links for license type"""
+    try:
+        links = commercial_service.distribution_manager.get_download_links(license_type)
+        return JSONResponse(content={"download_links": links})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=400)
 
 
 # Serve the React frontend

@@ -1,0 +1,37 @@
+version: "1.0"
+rules:
+  - name: "system_binaries"
+    pattern: "*.exe,*.dll,*.so,*.dylib"
+    required: true
+    algorithms: ["sha256"]
+    severity: "critical"
+
+  - name: "configuration_files"
+    pattern: "*.yml,*.yaml,*.ini,*.cfg,*.conf,*.json"
+    required: true
+    algorithms: ["sha256"]
+    severity: "high"
+
+  - name: "documentation"
+    pattern: "*.md,*.txt,*.pdf"
+    required: false
+    algorithms: ["sha256"]
+    severity: "medium"
+
+  - name: "source_code"
+    pattern: "*.py,*.js,*.ts,*.java,*.cpp,*.c,*.h"
+    required: false
+    algorithms: ["sha256"]
+    severity: "medium"
+
+attestation:
+  format: "json"
+  include_timestamps: true
+  signature_required: true
+  compression: "gzip"
+
+validation:
+  strict_mode: true
+  fail_fast: false
+  detailed_errors: true
+  parallel_processing: false
