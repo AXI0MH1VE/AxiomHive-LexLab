@@ -90,6 +90,7 @@ AxiomHive provides a comprehensive, production-ready cognitive infrastructure st
 - **Entropy Matrix Harmonizer:** Coherence optimization for multi-module outputs
 - **Shard Network (Quantum Refractor):** Distributed reasoning shard coordination
 - **Monetization Marketplace:** Module marketplace framework (extensibility layer)
+- **AxiomHive:** Sovereign AI ascent protocol with quantum-resistant framework, DAG orchestration, and sanctity protocol for ethical governance
 
 **Security & Integrity:**
 - GPG signing for release artifacts
@@ -207,6 +208,8 @@ This is professional infrastructure for serious applications—not a conversatio
   - Monetization Marketplace: Handles marketplace operations.
   - Shard Network: Quantum refractor for network sharding.
 - **AxiomHash**: Integrated hashing library for cryptographic operations.
+- **IntegrityForge**: Deterministic file integrity validation and cryptographic attestation system.
+- **AxiomHive Module**: Sovereign AI ascent protocol with quantum-resistant framework and ethical governance.
 - **CI/CD**: GitHub Actions workflows for continuous integration and validation.
 - **Packaging and Attestation**: Scripts for packaging, checksums, and integrity attestation.
 - **Validation**: Schema validation for strategy, principles, and deployment.
