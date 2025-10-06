@@ -2,6 +2,26 @@
 
 This workspace contains a full scaffold for the AxiomHive stack: frontend, backend, packaging, and CI.
 
+## Features
+
+- **Backend API**: FastAPI-based backend for handling requests and serving data.
+- **Frontend Interface**: React-based frontend built with Vite for a modern web experience.
+- **AI Modules**:
+  - Emotional Analyzer: Processes and analyzes emotional data.
+  - Ethics Sentinel: Ensures ethical compliance in operations.
+  - Safety Guardian: Implements OODA loop for safety monitoring.
+  - Memory Trace Manager: Manages memory graphs and traces.
+  - Reasoning Body: Logical engine for reasoning tasks.
+  - Abstract Pattern Detector: Detects patterns in data.
+  - Entropy Matrix Harmonizer: Harmonizes entropy matrices for coherence.
+  - Monetization Marketplace: Handles marketplace operations.
+  - Shard Network: Quantum refractor for network sharding.
+- **AxiomHash**: Integrated hashing library for cryptographic operations.
+- **CI/CD**: GitHub Actions workflows for continuous integration and validation.
+- **Packaging and Attestation**: Scripts for packaging, checksums, and integrity attestation.
+- **Validation**: Schema validation for strategy, principles, and deployment.
+- **Security**: GPG signing and airgap deployability features.
+
 Quick start (backend):
 
 ```
