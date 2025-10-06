@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "torch", "networkx", "pytest", "pyyaml", "sympy", "z3-solver"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "axiom_hive"
+version = "0.3.0"
+description = "Sovereign AI Ascent Protocol"
+authors = [{name = "Alexis Adams", email = "alexis@axiomhive.co"}]
+dependencies = ["torch", "networkx", "pyyaml", "sympy", "z3-solver"]
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["ai", "dag", "sovereign", "axiom"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+dev = ["black", "isort"]

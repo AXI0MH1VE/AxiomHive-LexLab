@@ -6,7 +6,7 @@ export default function App() {
     {
       id: 1,
       type: 'assistant',
-      content: 'Hello! I\'m an AI assistant. How can I help you today?',
+      content: 'Hello! I\'m an AI assistant powered by AxiomHive. How can I help you today?',
       timestamp: new Date(),
       cognitiveDepth: null,
       verificationStatus: null
@@ -17,7 +17,7 @@ export default function App() {
   const [showAdvancedView, setShowAdvancedView] = useState(false)
   const [operationalStatus, setOperationalStatus] = useState({
     reasoning: 'active',
-    memory: 'active', 
+    memory: 'active',
     ethics: 'active',
     verification: 'active'
   })
@@ -147,22 +147,37 @@ export default function App() {
 
   return (
     <div className="chat-app">
-      {/* ChatGPT-like Interface */}
       <div className="chat-container">
         <header className="chat-header">
-          <div className="header-left">
-            <h1 className="chat-title">ChatGPT</h1>
-            <span className="version-indicator">Powered by AxiomHive</span>
-          </div>
-          <div className="header-controls">
-            <button 
-              className={`advanced-toggle ${showAdvancedView ? 'active' : ''}`}
-              onClick={() => setShowAdvancedView(!showAdvancedView)}
-              title="Toggle Advanced View"
-            >
-              🔍
-            </button>
-            <button className="new-chat-btn" onClick={newChat}>+ New chat</button>
+          <div className="header-content">
+            <div className="logo-section">
+              <div className="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                </svg>
+              </div>
+              <div className="brand">
+                <h1>AxiomChat</h1>
+                <span className="subtitle">Powered by AxiomHive</span>
+              </div>
+            </div>
+            <div className="header-actions">
+              <button
+                className={`mode-toggle ${showAdvancedView ? 'active' : ''}`}
+                onClick={() => setShowAdvancedView(!showAdvancedView)}
+                title="Advanced Mode"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+                </svg>
+              </button>
+              <button className="new-chat-btn" onClick={newChat}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+                </svg>
+                New chat
+              </button>
+            </div>
           </div>
         </header>
 
@@ -190,85 +205,172 @@ export default function App() {
 
         <div className="messages-container">
           {messages.map((message) => (
-            <div key={message.id} className={`message ${message.type}`}>
-              <div className="message-content">
-                <div className="message-text">{message.content}</div>
-                
-                {/* Advanced View: Cognitive Depth Indicators */}
-                {showAdvancedView && message.cognitiveDepth && (
-                  <div className="cognitive-analysis">
-                    <div className="analysis-header">🧠 Cognitive Analysis</div>
-                    <div className="analysis-metrics">
-                      <span className="metric">Confidence: {message.cognitiveDepth.confidenceScore}%</span>
-                      <span className="metric">Modules: {message.cognitiveDepth.reasoningModules.length}</span>
-                      <span className="metric">Memory Refs: {message.cognitiveDepth.memoryReferences}</span>
-                    </div>
-                    
-                    {message.reasoningPath && (
-                      <details className="reasoning-path">
-                        <summary>🔗 Reasoning Path</summary>
-                        <ol>
-                          {message.reasoningPath.map((step, i) => (
-                            <li key={i}>{step}</li>
-                          ))}
-                        </ol>
-                      </details>
-                    )}
+            <div key={message.id} className={`message-wrapper ${message.type}`}>
+              <div className="message-avatar">
+                {message.type === 'assistant' ? (
+                  <div className="avatar assistant">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                ) : (
+                  <div className="avatar user">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+                    </svg>
                   </div>
                 )}
+              </div>
+              <div className="message-content">
+                <div className="message-bubble">
+                  <div className="message-text">{message.content}</div>
+
+                  {/* Advanced View: Cognitive Depth Indicators */}
+                  {showAdvancedView && message.cognitiveDepth && (
+                    <div className="cognitive-analysis">
+                      <div className="analysis-header">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="currentColor"/>
+                        </svg>
+                        Cognitive Analysis
+                      </div>
+                      <div className="analysis-metrics">
+                        <div className="metric">
+                          <span className="metric-label">Confidence</span>
+                          <span className="metric-value">{message.cognitiveDepth.confidenceScore}%</span>
+                        </div>
+                        <div className="metric">
+                          <span className="metric-label">Modules</span>
+                          <span className="metric-value">{message.cognitiveDepth.reasoningModules.length}</span>
+                        </div>
+                        <div className="metric">
+                          <span className="metric-label">Memory</span>
+                          <span className="metric-value">{message.cognitiveDepth.memoryReferences}</span>
+                        </div>
+                      </div>
+
+                      {message.reasoningPath && (
+                        <details className="reasoning-path">
+                          <summary>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/>
+                            </svg>
+                            Reasoning Path
+                          </summary>
+                          <div className="reasoning-steps">
+                            {message.reasoningPath.map((step, i) => (
+                              <div key={i} className="reasoning-step">
+                                <span className="step-number">{i + 1}</span>
+                                <span className="step-text">{step}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      )}
+                    </div>
+                  )}
+                </div>
 
                 {/* Verification Badges */}
                 {message.verificationStatus && (
                   <div className="verification-badges">
-                    <span className="badge verified" title="Factually Verified">✓ Verified</span>
-                    <span className="badge logical" title="Logically Sound">⚡ Logic</span>
-                    <span className="badge ethical" title="Ethically Compliant">🛡️ Safe</span>
+                    <div className="badge verified">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
+                      </svg>
+                      Verified
+                    </div>
+                    <div className="badge logical">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
+                      </svg>
+                      Logic
+                    </div>
+                    <div className="badge ethical">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="currentColor"/>
+                      </svg>
+                      Safe
+                    </div>
                   </div>
                 )}
               </div>
             </div>
           ))}
           
-          {isLoading && (
-            <div className="message assistant loading">
-              <div className="message-content">
-                <div className="typing-indicator">
-                  <span></span><span></span><span></span>
-                </div>
-                {showAdvancedView && (
-                  <div className="processing-status">
-                    Processing through cognitive modules...
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+         {isLoading && (
+           <div className="message-wrapper assistant loading">
+             <div className="message-avatar">
+               <div className="avatar assistant">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                 </svg>
+               </div>
+             </div>
+             <div className="message-content">
+               <div className="message-bubble">
+                 <div className="typing-indicator">
+                   <div className="typing-dot"></div>
+                   <div className="typing-dot"></div>
+                   <div className="typing-dot"></div>
+                 </div>
+                 {showAdvancedView && (
+                   <div className="processing-status">
+                     <div className="processing-text">Processing through cognitive modules...</div>
+                     <div className="processing-bar">
+                       <div className="processing-progress"></div>
+                     </div>
+                   </div>
+                 )}
+               </div>
+             </div>
+           </div>
+         )}
           
           <div ref={messagesEndRef} />
         </div>
 
         <div className="input-container">
           <div className="input-wrapper">
-            <textarea
-              ref={textareaRef}
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Message ChatGPT..."
-              rows={1}
-              className="message-input"
-              disabled={isLoading}
-            />
-            <button 
-              onClick={sendMessage} 
-              disabled={!inputText.trim() || isLoading}
-              className="send-button"
-            >
-              {isLoading ? '⏳' : '↑'}
-            </button>
+            <div className="input-field">
+              <textarea
+                ref={textareaRef}
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Message AxiomChat..."
+                rows={1}
+                className="message-input"
+                disabled={isLoading}
+              />
+              <button
+                onClick={sendMessage}
+                disabled={!inputText.trim() || isLoading}
+                className="send-button"
+              >
+                {isLoading ? (
+                  <div className="loading-spinner"></div>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
           <div className="input-footer">
-            <span className="disclaimer">Powered by AxiomHive modular cognitive architecture</span>
+            <div className="footer-content">
+              <span className="disclaimer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                </svg>
+                Powered by AxiomHive cognitive architecture
+              </span>
+              <span className="footer-links">
+                <a href="#" className="footer-link">Terms</a>
+                <a href="#" className="footer-link">Privacy</a>
+              </span>
+            </div>
           </div>
         </div>
       </div>

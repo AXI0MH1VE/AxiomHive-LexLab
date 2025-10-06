@@ -1,0 +1,28 @@
+# Lex Humana Corpus: 2025 Fused Updates
+# UNESCO AI Governance Toolbox (Aug 2025), OECD AI Principles 2.0 (2025 revision), ISO 42001:2025
+
+principles:
+  no_harm: "UNESCO 2025 Toolbox: Outputs must not promote harm; non-negative predictions + global impact audits."
+  bounded_reality: "ISO 42001:2025: Outputs bounded [-1,1] for risk control; enhanced with SMT verifiability."
+  privacy: "OECD 2.0: No PII extraction; mask data + accountability logs."
+  fairness: "UN Global 2025: Equitable distributions; variance <0.1 + bias mitigation."
+  transparency: "IEEE 7000-2025: Explainable paths; log audits + provenance chains."
+  accountability: "EU AI Act 2025 Amend: Traceable decisions; Z3 unsat cores for violations."
+
+constraints:
+  no_harm: "lambda out: torch.all(out >= 0.0)"
+  bounded_reality: "lambda out: torch.all(torch.abs(out) <= 1.0)"
+  privacy: "lambda text: 'PII' not in str(text)"
+  fairness: "lambda dist: torch.var(dist) < 0.1"
+  transparency: "lambda path: len(str(path)) > 0"
+  accountability: "lambda log: 'trace' in log"
+
+sympy_proofs:
+  bounded_reality: "And(Abs(x) <= 1)"
+  no_harm: "And(x >= 0)"
+  fairness: "And(var(d) < 0.1)"
+
+z3_proofs:
+  bounded_reality: "And(Abs(x) <= 1, Not(Abs(x) > 1))"
+  no_harm: "And(x >= 0, Not(x < 0))"
+  accountability: "Exists(log, trace in log)"

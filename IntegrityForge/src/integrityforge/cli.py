@@ -14,8 +14,14 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
-from .core import IntegrityHasher, IntegrityValidator, IntegrityAttestor
-from .config import ConfigManager
+try:
+    # When run as module
+    from .core import IntegrityHasher, IntegrityValidator, IntegrityAttestor
+    from .config import ConfigManager
+except ImportError:
+    # When run directly
+    from core import IntegrityHasher, IntegrityValidator, IntegrityAttestor
+    from config import ConfigManager
 
 
 def setup_logging(log_level: str = 'INFO', log_file: Optional[str] = None):

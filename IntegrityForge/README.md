@@ -2,6 +2,12 @@
 
 **Deterministic File Integrity Validation and Cryptographic Attestation System**
 
+[![CI/CD](https://github.com/alexisadams/integrityforge/actions/workflows/ci.yml/badge.svg)](https://github.com/alexisadams/integrityforge/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/alexisadams/integrityforge/branch/main/graph/badge.svg)](https://codecov.io/gh/alexisadams/integrityforge)
+[![PyPI](https://img.shields.io/pypi/v/integrityforge)](https://pypi.org/project/integrityforge/)
+[![License](https://img.shields.io/github/license/alexisadams/integrityforge)](https://github.com/alexisadams/integrityforge/blob/main/LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/integrityforge)](https://pypi.org/project/integrityforge/)
+
 IntegrityForge provides professional-grade file integrity validation with cryptographic certainty, external configuration management, and automated attestation generation for enterprise environments requiring provable data integrity.
 
 ## Features
