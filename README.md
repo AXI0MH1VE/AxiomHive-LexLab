@@ -4,12 +4,117 @@
 
 AxiomHive is production-ready, deterministic, operator-controlled infrastructure for engineers and organizations that demand zero black-boxes, full auditability, and cryptographic proof of integrity. No personality wrapper. No cloud dependency. No hidden telemetry. This is professional cognitive computing architecture designed for sovereignty, reproducibility, and high-stakes deployment.
 
+**Included: Full-Stack Chatbot Interface + Operator-Grade Cognitive Modules**
+
+This system provides an integrated web-based chatbot interface backed by transparent, auditable cognitive modules. You get immediate, local, interactive access to proof-driven reasoning with complete operator control—not a black-box API call, but a sovereign cognitive engine you run, validate, and audit on your own infrastructure.
+
 ---
 
-## Architect & Developer
+## Founder & Sustainer
 
-**Alexis Adams** – Original architect and lead developer  
+**Alexis Adams** – Founder, architect, and ongoing sustainer of the AxiomHive vision  
 @DevDollzAi | @AxiomHive | axiomhive.co
+
+Alexis Adams created AxiomHive as a proof-driven cognitive infrastructure project and continues to develop, refine, and expand its capabilities for professional, sovereign, and high-stakes applications.
+
+---
+
+## How the Chatbot Interface Works: Launch, Interact, Control
+
+**Launching the Interface:**
+
+1. **Start the Backend:** Run `./run.sh` in the `backend/` directory (or use `run_local.ps1` on Windows PowerShell from the repo root).
+2. **Access the UI:** Open your browser to `http://127.0.0.1:8000/ui/` — the integrated chatbot interface loads immediately.
+3. **No Cloud Required:** Everything runs locally on your machine. No external API calls, no telemetry, no vendor dependency.
+
+**What You See:**
+
+The chatbot interface is a React-based frontend that communicates with the FastAPI backend. You interact through a conversational interface, but behind every response is a transparent cognitive pipeline:
+
+- **Reasoning Path Visibility:** See step-by-step logical decomposition of queries.
+- **Advanced Cognitive Metrics:** Access real-time data on emotional analysis, safety checks, ethical evaluations, and pattern detection.
+- **Verification Breakdowns:** Review cryptographic integrity checks, module attestations, and validation results inline.
+- **Operator Options:** Toggle advanced modes, adjust reasoning depth, enable/disable specific cognitive modules (Ethics Sentinel, Safety Guardian, etc.), and inspect memory traces.
+
+**Operator Interaction Workflow:**
+
+1. **Send a Query:** Type a question, request, or task into the chatbot.
+2. **Review Cognitive Processing:** Watch as the system routes your query through modular cognitive layers—emotional analysis, ethical screening, safety monitoring, logical reasoning, pattern detection.
+3. **Inspect Reasoning:** Expand reasoning-path panels to see how conclusions were reached. Every step is auditable.
+4. **Control Modules:** Use operator controls to enable/disable modules, adjust validation thresholds, or force specific reasoning strategies.
+5. **Validate Integrity:** Run on-demand integrity checks via the UI or backend API to confirm cryptographic attestation of system state.
+6. **Export Traces:** Download audit logs, reasoning graphs, and memory traces for compliance review or third-party verification.
+
+**Unique Operator Options:**
+
+- **Reasoning Depth Control:** Set shallow (fast) or deep (exhaustive) reasoning modes.
+- **Module Selection:** Enable/disable individual cognitive modules (e.g., run without emotional analysis, or add entropy harmonization).
+- **Safety Threshold Tuning:** Adjust risk tolerance for safety guardian interventions.
+- **Ethical Stance Configuration:** Choose ethical frameworks (consequentialist, deontological, virtue-based, custom).
+- **Memory Inspection:** View and manage conversation memory graphs, including retention policies and trace history.
+- **Audit Mode:** Log every interaction with cryptographic timestamps for regulatory compliance.
+
+**What Problems Does Local Use Solve?**
+
+- **Data Sovereignty:** Your queries, data, and reasoning never leave your infrastructure. Critical for classified, proprietary, or sensitive work.
+- **Audit Compliance:** Generate provable reasoning chains for financial, healthcare, legal, and government applications.
+- **Zero Vendor Lock-In:** No subscription fees, no rate limits, no API deprecation. You own the stack.
+- **Reproducibility:** Run identical reasoning pipelines across environments with checksummed deployments.
+- **Trust & Transparency:** Inspect every line of logic. No hidden prompts, no opaque fine-tuning, no black-box biases.
+
+---
+
+## What You Get: Complete Capabilities Summary
+
+AxiomHive provides a comprehensive, production-ready cognitive infrastructure stack:
+
+**Interactive Interface:**
+- Full-featured web-based chatbot UI with conversational interaction
+- Real-time cognitive metrics dashboard (reasoning paths, safety checks, ethical evaluations)
+- Operator control panel for module configuration and validation
+- Audit log viewer and trace export functionality
+
+**Backend APIs:**
+- FastAPI-based REST API for programmatic access
+- Endpoints for query processing, module control, integrity validation, and attestation
+- WebSocket support for real-time streaming responses
+- Schema-validated requests and responses for integration reliability
+
+**Cognitive Modules (Transparent & Auditable):**
+- **Reasoning Body:** Deterministic logical engine with step-by-step decomposition
+- **Ethics Sentinel:** Configurable ethical compliance evaluation with multiple framework support
+- **Safety Guardian:** OODA loop-based safety monitoring with risk assessment and intervention
+- **Emotional Analyzer:** Contextual emotional state processing (optional, controllable)
+- **Abstract Pattern Detector:** Multi-scale pattern recognition across data and reasoning
+- **Memory Trace Manager:** Conversation memory graphs with retention policies and audit trails
+- **Entropy Matrix Harmonizer:** Coherence optimization for multi-module outputs
+- **Shard Network (Quantum Refractor):** Distributed reasoning shard coordination
+- **Monetization Marketplace:** Module marketplace framework (extensibility layer)
+
+**Security & Integrity:**
+- GPG signing for release artifacts
+- SHA256 checksums for all deployments
+- Cryptographic attestation scripts for third-party verification
+- Airgap-deployable architecture (zero external dependencies)
+- Schema validation for all configuration and strategy documents
+
+**Validation & Compliance Suite:**
+- Local integrity validation scripts (Windows PowerShell and Bash)
+- Automated CI/CD validation workflows via GitHub Actions
+- Reproducible build verification with version-locked dependencies
+- Export-ready audit logs and reasoning traces for regulatory review
+
+**Local-First Operation:**
+- Runs entirely on your hardware—no cloud services required
+- Offline-capable after initial setup
+- No telemetry, no phone-home, no hidden data exfiltration
+- Full control over compute resources, data residency, and access policies
+
+**Developer & Extensibility Tools:**
+- Modular architecture for custom cognitive module development
+- AxiomHash library for cryptographic operations
+- Comprehensive API documentation
+- Example workflows and integration patterns
 
 ---
 
@@ -62,10 +167,14 @@ In an era of opaque, cloud-dependent AI services, AxiomHive provides:
 
 ## Who Benefits?
 
-**Engineers**: Deploy mission-critical cognitive pipelines with complete auditability, version control, and reproducible outcomes.  
-**Researchers**: Run transparent experiments with verifiable reasoning engines and validation frameworks.  
-**Security Teams**: Operate AI systems in air-gapped environments with cryptographic proof of integrity.  
-**Compliance Officers**: Generate provable logic trails for regulatory audits and ethical reviews.  
+**Engineers**: Deploy mission-critical cognitive pipelines with complete auditability, version control, and reproducible outcomes.
+
+**Researchers**: Run transparent experiments with verifiable reasoning engines and validation frameworks.
+
+**Security Teams**: Operate AI systems in air-gapped environments with cryptographic proof of integrity.
+
+**Compliance Officers**: Generate provable logic trails for regulatory audits and ethical reviews.
+
 **CTOs & Technical Leaders**: Demonstrate operational sovereignty and readiness for high-stakes collaboration.
 
 ---
