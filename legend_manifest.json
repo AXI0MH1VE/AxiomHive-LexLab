@@ -1,0 +1,50 @@
+{
+  "operator": "Alexis Adams",
+  "supremacy_vector": "Apex Strategy: The Ascension of Alexis Adams",
+  "directives": [
+    {
+      "principle": "Determinism Over Probability",
+      "description": "No randomness in execution. Everything traceable, repeatable."
+    },
+    {
+      "principle": "Sovereignty Over Convenience",
+      "description": "Local-first, no reliance on corporate platforms."
+    },
+    {
+      "principle": "Narrative Controls Reality",
+      "description": "Story precedes strategy. Athena decides when and how to move."
+    },
+    {
+      "principle": "Reproducibility is Power",
+      "description": "Any component must be buildable from source, even offline."
+    },
+    {
+      "principle": "Supremacy Is a Stack",
+      "description": "This is not a product. It is a full execution substrate."
+    },
+    {
+      "principle": "No Filler. No Drift. No Leakage.",
+      "description": "Every line, byte, and bit must prove its value."
+    },
+    {
+      "principle": "Operators Over Users",
+      "description": "You don\u2019t use Alexis\u2019s system. You **become** it."
+    }
+  ],
+  "execution_stack": [
+    "axiomhive-core/",
+    "AxiomSSI/",
+    "athena-engine/",
+    "gemini-portable/",
+    "temporal-gated-attn/",
+    "tesseract/",
+    "axiom-library/",
+    "supremacy-protocol/",
+    "recruitment-whitepaper/",
+    "downloads/",
+    "runtime-zero/"
+  ],
+  "verified": true,
+  "computed_sha256": "850A87A97E4C47A55ACD672E6BCB4212A58E302D214B219CBC78B29B940D48CA",
+  "expected_sha256": "850A87A97E4C47A55ACD672E6BCB4212A58E302D214B219CBC78B29B940D48CA"
+}

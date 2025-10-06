@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PRINCIPLES.md metadata",
+  "type": "object",
+  "properties": {
+    "principles": {
+      "type": "array",
+      "items": { "type": "object", "properties": { "name": {"type":"string"}, "description": {"type":"string"} }, "required": ["name"] }
+    }
+  },
+  "required": ["principles"]
+}

@@ -1,0 +1,182 @@
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #343541; /* Dark background similar to ChatGPT */
+    color: #ececf1; /* Light text color */
+}
+
+/* Chat Container */
+.chat-container {
+    width: 100%;
+    max-width: 800px; /* Max width for chat interface */
+    height: 90vh; /* Responsive height */
+    max-height: 900px;
+    background-color: #202123; /* Slightly darker than body for main chat area */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures content stays within bounds */
+}
+
+/* Chat Header */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #2a2b2e;
+    border-bottom: 1px solid #3e3f42;
+    color: #d1d5db;
+}
+
+.chat-header h1 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: 500;
+}
+
+.new-chat-btn {
+    background-color: #4a4a4a;
+    color: #d1d5db;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.new-chat-btn:hover {
+    background-color: #5a5a5a;
+}
+
+/* Chat History */
+.chat-history {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Scrollable chat history */
+    scroll-behavior: smooth;
+}
+
+/* Message Styling */
+.message {
+    margin-bottom: 15px;
+    display: flex; /* For avatar/name alignment */
+    align-items: flex-start;
+}
+
+.message p {
+    margin: 0;
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 70%;
+    line-height: 1.5;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.user-message p {
+    background-color: #3c4043; /* User message background */
+    color: #e0e0e0;
+    border-bottom-right-radius: 2px; /* Slight difference for user messages */
+}
+
+.ai-message {
+    justify-content: flex-start;
+}
+
+.ai-message p {
+    background-color: #1a73e8; /* AI message background (blue) */
+    color: #ffffff;
+    border-bottom-left-radius: 2px; /* Slight difference for AI messages */
+}
+
+.system-message {
+    text-align: center;
+    color: #8e8e93;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+/* Chat Input Area */
+.chat-input-area {
+    display: flex;
+    padding: 15px 20px;
+    background-color: #2a2b2e;
+    border-top: 1px solid #3e3f42;
+    align-items: flex-end; /* Align textarea and button at bottom */
+}
+
+.chat-input-area textarea {
+    flex-grow: 1;
+    resize: none; /* Disable manual resize */
+    border: 1px solid #4a4a4a;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #3e3f42;
+    color: #ececf1;
+    margin-right: 10px;
+    max-height: 150px; /* Limit textarea height */
+    overflow-y: auto;
+}
+
+.chat-input-area textarea:focus {
+    outline: none;
+    border-color: #1a73e8; /* Highlight on focus */
+}
+
+.send-btn {
+    background-color: #1a73e8; /* Blue send button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    height: 40px; /* Fixed height for button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-btn:hover {
+    background-color: #165bb3;
+}
+
+.send-btn:disabled {
+    background-color: #5a5a5a;
+    cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chat-container {
+        height: 100vh;
+        border-radius: 0;
+        max-height: none;
+    }
+    .chat-header {
+        padding: 10px 15px;
+    }
+    .chat-history {
+        padding: 15px;
+    }
+    .chat-input-area {
+        padding: 10px 15px;
+    }
+    .message p {
+        max-width: 85%;
+    }
+}

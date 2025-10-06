@@ -1,0 +1,34 @@
+name: validation
+
+on:
+  push:
+    paths:
+      - '**.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Ensure required files exist
+        run: |
+          for f in STRATEGY.md PRINCIPLES.md DEPLOYMENT.md; do
+            if [ ! -f "$f" ]; then echo "$f missing"; exit 1; fi
+          done
+      - name: Compute SHA256
+        run: |
+          cat STRATEGY.md PRINCIPLES.md DEPLOYMENT.md > combined.txt
+          sha256sum combined.txt | awk '{print $1}' > combined.sha256
+          echo "Computed SHA256:" $(cat combined.sha256)
+      - name: Commit attestation
+        run: |
+          echo "SHA256(STRATEGY.md + PRINCIPLES.md + DEPLOYMENT.md) = $(cat combined.sha256)" > VALIDATION/integrity_attestation.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add VALIDATION/integrity_attestation.txt
+          git commit -m "CI: update integrity attestation" || echo "no changes to commit"
+      - name: Upload checksum
+        uses: actions/upload-artifact@v3
+        with:
+          name: combined-sha256
+          path: combined.sha256

@@ -1,0 +1,4 @@
+/* Minimal styles to keep UI readable without full Tailwind build */
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+ul{padding-left:20px}
+pre{white-space:pre-wrap}
