@@ -214,6 +214,77 @@ This is professional infrastructure for serious applications—not a conversatio
 
 ---
 
+## Commercial Licensing & Purchase
+
+AxiomHive is available for commercial licensing with Bitcoin payments for privacy and sovereignty. All licenses include full access to the cognitive infrastructure with professional support.
+
+### License Types
+
+| License Type | Price (BTC) | Price (USD) | Activations | Duration | Features |
+|-------------|-------------|-------------|-------------|----------|----------|
+| **Personal** | 0.001 BTC | $50 | 3 devices | 1 year | Core modules, personal use |
+| **Commercial** | 0.005 BTC | $250 | 10 devices | 1 year | Commercial use, priority support |
+| **Enterprise** | 0.01 BTC | $500 | 100 devices | 3 years | All modules, enterprise support |
+
+### Purchase Process
+
+1. **Visit**: https://axiomhive.co/purchase
+2. **Select License**: Choose your license type
+3. **Bitcoin Payment**: Send exact amount to provided address
+4. **Verification**: System confirms payment on blockchain
+5. **License Generation**: Receive license key and activation instructions
+6. **Download & Install**: Get software from distribution links
+7. **Activate**: Use license key to activate on your hardware
+
+### Payment Details
+
+- **Bitcoin Address**: `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`
+- **Network**: Bitcoin mainnet only
+- **Confirmations**: 1 confirmation required
+- **Payment Window**: 24 hours to complete transaction
+
+### Commercial Features
+
+- **Hardware Binding**: Licenses tied to specific hardware IDs
+- **Activation Limits**: Controlled device activation limits
+- **Support Levels**: Varying support tiers by license type
+- **API Access**: Enterprise licenses include API access
+- **Custom Integration**: Enterprise support for custom deployments
+
+### API Endpoints for Commercial Licensing
+
+```bash
+# Get pricing information
+GET /api/commercial/pricing
+
+# Initiate purchase
+POST /api/commercial/purchase/initiate
+
+# Complete purchase with payment
+POST /api/commercial/purchase/complete
+
+# Check order status
+GET /api/commercial/order/{order_id}
+
+# Activate license
+POST /api/commercial/license/activate
+
+# Validate license
+POST /api/commercial/license/validate
+
+# Get download links
+GET /api/commercial/download/{license_type}
+```
+
+### Support & Documentation
+
+- **Purchase Flow**: See `PURCHASE_FLOW.md` for detailed instructions
+- **Email Support**: support@axiomhive.co
+- **Documentation**: https://docs.axiomhive.co/commercial
+- **Refund Policy**: 30-day refunds available
+
+---
+
 ## Quick Start
 
 **Backend:**
