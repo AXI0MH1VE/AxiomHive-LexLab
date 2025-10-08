@@ -1,9 +1,7 @@
 name: CI
-
 on:
   push:
     branches: [ master, main ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +21,7 @@ jobs:
           mkdir -p artifacts
           mv computed.sha256 artifacts/
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: attestation
           path: artifacts/computed.sha256
