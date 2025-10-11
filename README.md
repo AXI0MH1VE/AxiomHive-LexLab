@@ -1,133 +1,208 @@
 # AxiomHive-LexLab
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub Stars](https://img.shields.io/github/stars/AXI0MH1VE/AxiomHive-LexLab?style=social)](https://github.com/AXI0MH1VE/AxiomHive-LexLab/stargazers)
-[![Contributors](https://img.shields.io/github/contributors/AXI0MH1VE/AxiomHive-LexLab)](https://github.com/AXI0MH1VE/AxiomHive-LexLab/graphs/contributors)
-[![Issues](https://img.shields.io/github/issues/AXI0MH1VE/AxiomHive-LexLab)](https://github.com/AXI0MH1VE/AxiomHive-LexLab/issues)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/AXI0MH1VE/AxiomHive-LexLab/pulls)
+Status: Technical Preview • License: MIT
 
-An experimental natural language processing framework implementing basic text analysis tools with transparent, modular architecture.
+AxiomHive-LexLab is a precision-grade, modular lab for lawful, reproducible, and verifiable text analytics. It combines auditable pipelines, cryptographic integrity, privacy-first local/air-gapped deployment, and API-extensible modules with deterministic builds and compliance posture reporting.
 
-## Overview
 
-AxiomHive-LexLab is an educational NLP project that provides straightforward implementations of fundamental text processing operations. The codebase prioritizes code clarity and modularity to support learning and experimentation.
+1) Vision and Strategic Positioning
+- Mission: Provide a verifiable, regulator-ready NLP and text forensics stack that prioritizes traceability, security, and reproducibility without sacrificing speed or developer ergonomics.
+- Strategy: Treat every pipeline as evidence. Every transformation is logged, hashed, and reproducible across machines, enabling defense, research, and regulated industries to trust outputs.
+- Differentiation: Built-in audit trails, content-addressed artifacts, crypto-backed provenance, deterministic environments, deep inspection modes, and quantum-conscious cryptography options. Designed to operate fully offline.
+- Target Users: Security researchers, compliance officers, regulated biotech/finance, defense analysis teams, enterprise data science, and academic labs.
 
-## Features
 
-### Core Functionality
+2) Advanced Features
+- Modular Audit Trails: Each pipeline stage emits a structured record: inputs, parameters, code references, environment fingerprint, duration, outputs. Records are chained via content hashes.
+- Cryptographic Integrity: SHA-256 by default; optional BLAKE3 and SHA3-256. Merkle DAG for artifact stores. Signed manifests (Sigstore/Cosign-compatible) and optional hardware-backed keys (YubiKey/PKCS#11).
+- Local/Air-Gap Deploy: Zero external calls by default. Vendored models/dicts. Fully reproducible setup via lockfiles and hermetic runners. Optional container or Nix.
+- Quantum-Secure Pipelines (experimental): Pluggable PQC signature scheme adapters (e.g., Dilithium via external libs) for manifests and attestations. Disabled by default; gated via config.
+- Deep Inspection Modes: Deterministic tokenization, Unicode normalization maps, boundary decisions, and regex engine traces. Exportable step-by-step diffs and heatmaps.
+- API Extensibility: Stable plugin interface for sources, transforms, analysers, and exporters. Versioned contracts with semantic capability descriptors.
+- Reproducibility: Content-addressed datasets and artifacts, pinned dependencies, exact seed control, frozen locales, and canonical I/O encodings.
+- Compliance Toolkit: Automated SBOM, license scan, third-party notices, policy checks, and pipeline attestations (SLSA-aligned). Red/Amber/Green compliance summary.
 
-- **Text Tokenization**: Basic word and sentence boundary detection
-- **Statistical Analysis**: Frequency counting and basic text statistics
-- **Pattern Matching**: Regular expression-based text search utilities
-- **Modular Architecture**: Clean separation of concerns across processing components
 
-### Technical Characteristics
+3) Architecture and Modules
+Top-level layout:
+- core/: Base abstractions
+  - pipeline.py: Directed acyclic pipeline executor with stage registry and audit hooks
+  - audit.py: Chain-of-custody records (JSONL) and Merkle linkages
+  - crypto.py: Hashing, signing, verification, manifest attestation
+  - storage.py: Content-addressed store (CAS) for artifacts
+  - config.py: Typed config loader (YAML/TOML) with schema validation
+- nlp/: Text utilities
+  - tokenize.py: Deterministic tokenization with Unicode segmentation options
+  - normalize.py: NFC/NFKC/NFKD pipelines and custom mapping tables
+  - regexx.py: Constrained regex with trace hooks and timeouts
+  - stats.py: Frequencies, tf-idf, collocations
+- io/: Inputs/outputs
+  - loaders/: Filesystem, stdin, archives (zip/tar), JSONL, CSV
+  - exporters/: JSON, JSONL, CSV, Parquet, HTML report, SARIF
+- plugins/: Extension entrypoints, sample third-party modules
+- ops/: Operational
+  - sbom/: Generation templates and SPDX emitters
+  - cicd/: CI jobs, policy gates, attestation steps
+  - bench/: Micro/meso benchmarks and datasets
+- cli/: Command-line surfaces and subcommands
+- docs/: Specifications, API docs, RFCs
+- tests/: Unit, integration, golden outputs, fuzzers
 
-- Pure Python implementation with standard library dependencies
-- Minimal external requirements (see `requirements.txt`)
-- Unit test coverage for core modules
-- MIT licensed for educational and commercial use
+Data Model and Flow:
+- Stage: A named, versioned unit of work with declared inputs/outputs and side-effect policy.
+- Run: A concrete execution of a pipeline with parameter hash, environment fingerprint, and seed.
+- Artifact: Immutable blob stored by content hash, referenced by manifest.
+- Manifest: Signed record of stages, artifacts, provenance, and compliance status.
 
-## Installation
 
-```bash
-# Clone repository
-git clone https://github.com/AXI0MH1VE/AxiomHive-LexLab.git
-cd AxiomHive-LexLab
+4) Installation and Configuration
+Prerequisites:
+- Python 3.11+ (3.12 recommended)
+- OS: Linux x86_64/arm64, macOS 13+, Windows 11 (WSL supported)
+- Optional: Docker 24+, Podman, or Nix 2.20+
 
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+Quickstart (pip):
+- git clone https://github.com/AXI0MH1VE/AxiomHive-LexLab.git
+- cd AxiomHive-LexLab
+- python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+- pip install -U pip wheel
+- pip install -e .[all]
 
-# Install dependencies
-pip install -r requirements.txt
-```
+Reproducible environment (UV or Rye optional):
+- Use requirements.lock/uv.lock for hermetic resolves: pip install -r requirements.lock
 
-## Usage
+Containerized:
+- docker build -t axiomlex:dev -f ops/containers/Dockerfile .
+- docker run --rm -it -v "$PWD:/work" axiomlex:dev
 
-```python
-from lexlab import TextProcessor
+Configuration:
+- Create lexlab.yaml in project root or pass --config path
+- Example:
+  pipeline:
+    name: baseline_nlp
+    seed: 42
+  storage:
+    cas_dir: ./.lexlab/cas
+  crypto:
+    hash: sha256
+    sign: false
+  compliance:
+    sbom: true
+    slsa_level: 2
+  inspection:
+    regex_trace: false
 
-# Initialize processor
-processor = TextProcessor()
 
-# Tokenize text
-text = "Natural language processing enables text analysis."
-tokens = processor.tokenize(text)
+5) Real-World Use Cases
+- Regulatory Filings QA: Validate tokenization and normalization on financial disclosures; produce SARIF issues for downstream triage.
+- Defense Intel Text Pipelines: Air-gapped entity extraction with deterministic outputs and signed manifests.
+- Biomedical Literature Reviews: Reproducible corpora, audit trails for inclusion/exclusion, and exportable evidence bundles.
+- E-Discovery and Chain-of-Custody: Immutable artifacts, time-bound regex scans with trace, and signed handoff manifests.
+- Academic Benchmarks: Frozen seeds/locales for fair comparisons; public artifact store with hashes.
 
-# Analyze frequency
-freq_dist = processor.frequency_analysis(tokens)
-print(freq_dist)
-```
 
-See `examples/` directory for additional usage patterns.
+6) Step-by-Step Usage
+- Initialize project store:
+  lexlab init --cas ./.lexlab/cas
+- Run a pipeline from a config file:
+  lexlab run --config lexlab.yaml --input data/input/*.txt --export reports/report.json
+- Enable deep inspection traces:
+  lexlab run --config lexlab.yaml --inspect all --export reports/trace.html
+- Verify integrity of an existing run:
+  lexlab verify --manifest runs/2025-10-11T00-00Z/manifest.json
+- Generate SBOM and attestation:
+  lexlab attest --output attest/spdx.json --sign=false
 
-## Project Structure
+Artifacts Produced per Run:
+- runs/<ts>/audit.jsonl: stage-by-stage records
+- runs/<ts>/manifest.json: signed/unsigned manifest linking artifacts
+- .lexlab/cas/: content-addressed storage of blobs
+- reports/: human-readable outputs (JSON/HTML/SARIF)
 
-```
-AxiomHive-LexLab/
-├── lexlab/           # Core library modules
-│   ├── tokenizer.py  # Tokenization utilities
-│   ├── analyzer.py   # Statistical analysis functions
-│   └── utils.py      # Helper utilities
-├── tests/            # Unit tests
-├── examples/         # Usage examples
-├── requirements.txt  # Python dependencies
-└── README.md        # Documentation
-```
 
-## Development Status
+7) Full API Reference (selected)
+Core Abstractions:
+- class Pipeline(stages: list[Stage], policy: Policy): execute(inputs) -> Result
+- class Stage(name: str, version: str, fn: Callable, inputs: Schema, outputs: Schema)
+- class AuditSink: emit(record) -> None
+- class CAS: put(bytes) -> Hash, get(Hash) -> bytes
+- class Signer: sign(bytes) -> Signature, verify(bytes, Signature) -> bool
 
-This project is in early development. Current capabilities are limited to basic text processing operations. The codebase is suitable for educational purposes and experimentation but not recommended for production use without thorough evaluation.
+nlp.tokenize
+- tokenize(text: str, mode: Literal["simple","unicode"] = "unicode") -> list[Token]
+- sentences(text: str, rule_set: Literal["default","unicode"] = "unicode") -> list[Span]
 
-## Contributing
+nlp.normalize
+- normalize(text: str, form: Literal["NFC","NFKC","NFKD"] = "NFC") -> str
+- map_table(text: str, table: Mapping[str,str]) -> str
 
-Contributions are welcome. Please follow standard GitHub workflow:
+nlp.regexx
+- find(pattern: str, text: str, timeout_ms: int = 50, trace: bool = False) -> list[Match]
+- replace(pattern: str, repl: str, text: str, timeout_ms: int = 50) -> str
 
-1. Fork the repository
-2. Create a feature branch
-3. Implement changes with appropriate tests
-4. Submit pull request with clear description
+core.crypto
+- digest(data: bytes, alg: Literal["sha256","blake3","sha3_256"]) -> str
+- sign(data: bytes, scheme: Literal["sigstore","pkcs11","pqc"], key_ref: str) -> Signature
+- verify(data: bytes, signature: Signature) -> bool
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+cli
+- lexlab init|run|verify|attest|export|bench [options]
 
-## Testing
+Events and Hooks:
+- on_stage_start, on_stage_end, on_error, on_artifact_stored, on_manifest_signed
 
-```bash
-# Run test suite
-python -m pytest tests/
 
-# Run with coverage
-python -m pytest --cov=lexlab tests/
-```
+8) Testing, Benchmarking, CI/CD
+Testing:
+- Unit tests with pytest; golden tests for tokenization/normalization; fuzzing harness for regex timeouts.
+- make test or pytest -q
 
-## Requirements
+Benchmarking:
+- ops/bench contains reproducible corpora and harness:
+  lexlab bench --suite nlp_basics --output bench/results.json
+- Microbench tracks throughput and tail latencies; JSON outputs for dashboards.
 
-- Python 3.8+
-- Dependencies listed in `requirements.txt`
+CI/CD (GitHub Actions):
+- Lint/type: ruff + mypy
+- Test matrix: 3.11, 3.12; Linux/macOS/Windows
+- Supply chain: generate SBOM, verify licenses, build attestations, upload artifacts to CAS cache
+- Policy gates: block on failing compliance or integrity checks
 
-See installation section for setup instructions.
 
-## Roadmap
+9) Roadmap and Ecosystem
+Near-term (0.2.x):
+- Parquet exporter, SARIF enhancements, richer CAS drivers (S3, rclone), Windows signing provider
+Mid-term (0.3.x):
+- PQC signatures GA with KMS adapters; redaction plugins; dataset lineage visualizer
+Long-term (0.4+):
+- Differential privacy transforms; secure enclaves; formal verification for critical stages
 
-- [ ] Enhanced tokenization with linguistic rules
-- [ ] N-gram generation utilities
-- [ ] Basic sentiment analysis module
-- [ ] Performance benchmarking suite
-- [ ] Expanded documentation and examples
+Ecosystem:
+- Official plugins: lexlab-plugin-entities, lexlab-plugin-redact
+- Community registry: docs/plugins.md with capability tags
+- Interop: SARIF, SPDX, SLSA, Sigstore/Cosign, SBOM standards
 
-## License
+Contribution Workflow
+- Fork and clone; create a feature branch
+- Run make setup && make precommit
+- Write tests, update docs, add changelog entry
+- Submit PR with RFC when changing APIs; CI must be green
+- Sign-off (DCO) and ensure license headers where needed
 
-MIT License - see [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+10) References and Glossary
+References:
+- Unicode Standard Annex #29 (Text Segmentation)
+- NIST SP 800-53, 800-63B (relevant controls and integrity)
+- SLSA Framework; SPDX spec; SARIF spec; Sigstore project
 
-This project builds on established NLP concepts and algorithms from the academic literature. See `REFERENCES.md` for citations and further reading.
+Glossary:
+- CAS: Content-addressed storage of artifacts by cryptographic hash
+- Manifest: Signed index linking stages, parameters, and artifacts for a run
+- PQC: Post-quantum cryptography
+- SBOM: Software Bill of Materials
+- SLSA: Supply-chain Levels for Software Artifacts
 
-## Contact
 
-For questions or issues, please use the [GitHub issue tracker](https://github.com/AXI0MH1VE/AxiomHive-LexLab/issues).
-
-## Disclaimer
-
-This is an experimental educational project. Code is provided as-is without warranties. Users should evaluate suitability for their specific use cases.
+Disclaimer
+- Experimental features may change; PQC paths are optional and off by default.
