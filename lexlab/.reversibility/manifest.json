@@ -1,0 +1,21 @@
+{
+    "workspace":  "C:\\Users\\devdo\\AxiomHive-LexLab",
+    "schema":  "axiomhive.lexlab/manifest@1",
+    "runs":  [
+                 {
+                     "startedUtc":  "2025-10-18T08:21:07.878Z",
+                     "id":  "bbe7f557-6200-424f-993b-85f5e3cc8487",
+                     "items":  [
+                                   {
+                                       "sha256":  "f38bd88bb640df5faebdac463aa3af97295aea713278594526575f5f6c0c8459",
+                                       "bytes":  4965,
+                                       "timestamp":  "2025-10-18T08:21:08.425Z",
+                                       "type":  "file",
+                                       "path":  "C:\\Users\\devdo\\AxiomHive-LexLab\\.reversibility\\rollback.ps1",
+                                       "rel":  ".reversibility/rollback.ps1"
+                                   }
+                               ],
+                     "endedUtc":  null
+                 }
+             ]
+}

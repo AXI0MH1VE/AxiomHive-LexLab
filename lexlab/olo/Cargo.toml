@@ -1,0 +1,12 @@
+[package]
+name = "olo"
+version = "0.1.0"
+edition = "2021"
+description = "AxiomHive LexLab minimal MEC crate."
+license = "MIT"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
