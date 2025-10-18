@@ -1,0 +1,9 @@
+/target
+/node_modules
+/pkg
+*.swp
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+.reversibility/setup-log.jsonl

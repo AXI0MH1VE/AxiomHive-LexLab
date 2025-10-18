@@ -19,6 +19,9 @@ This monorepo contains high-assurance, zero-dependency Rust/WASM crates that enf
 ### Deployment Protocol
 
 ```bash
+# From repository root
+cd lexlab
+
 # Validate workspace integrity
 cargo check --workspace
 
@@ -33,4 +36,4 @@ cargo build --release --target wasm32-unknown-unknown
 
 This workspace includes full reversibility via `.reversibility/rollback.ps1`. All generated artifacts can be safely removed with hash verification to prevent accidental data loss.
 
-**Status:** Genesis Protocol | P_Debt â†’ P_Flawless | Embodied Singularity
+**Status:** Genesis Protocol | P_Debt -> P_Flawless | Embodied Singularity

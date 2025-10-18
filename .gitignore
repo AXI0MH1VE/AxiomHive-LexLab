@@ -156,3 +156,6 @@ neo4j/
 # Temporary files
 *.tmp
 *.bak
+
+# Local reversibility logs (ignore root-level only)
+.reversibility/
